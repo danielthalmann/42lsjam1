@@ -1,4 +1,4 @@
-# UPsi Jam 4.0
+# Game jam 1.0 de 42 Lausanne
 
 Marathon de création de jeux vidéo de 48h non-stop à l'école 42 Lausanne.
 
