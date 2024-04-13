@@ -15,10 +15,28 @@ La version qui a été remis à la game jam se trouve sur itch.io à l'adresse s
 
 ## L'équipe
 
+### Benoît
+
+- [https://github.com/pugxart](https://github.com/pugxart)
+
+### Alexandre
+
+- [https://github.com/AlexandreLuisier](https://github.com/AlexandreLuisier)
+
 ### Daniel Thalmann
 
 - [https://aliend.itch.io/](https://aliend.itch.io/)
 - [https://github.com/danielthalmann](https://github.com/danielthalmann)
+
+### Tanguy Rossel
+
+- [https://github.com/tyrossel](https://github.com/tyrossel)
+
+### Gaël Rubin
+
+- [https://github.com/Grubin42](https://github.com/Grubin42)
+
+
 
 ## Le thème
 
