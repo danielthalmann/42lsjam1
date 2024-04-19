@@ -57,7 +57,7 @@ public class MapController : MonoBehaviour
     public Vector3 To3dVector(Vector2 position)
     {
 
-        float angle = (position.x / mapRadius) * 2 * Mathf.PI;
+        float angle = (position.x / mapRadius) ;
 
         Vector3 radius = (new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))) * mapRadius;
 
