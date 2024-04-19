@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using 
 
 public class PlayerControl : MonoBehaviour
 {
@@ -12,7 +15,10 @@ public class PlayerControl : MonoBehaviour
 
     public InputActionReference move;
 
-    private Vector3 moveDirection = Vector3.zero;
+    private Vector2 cylindricalMoveDirection = new Vector2(1.0, 0.0);
+
+    public Vector2 cylindricalPosition = Vector2.zero;
+
 
 
     // Start is called before the first frame update
@@ -24,14 +30,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = move.action.ReadValue<Vector2>();
-
-        moveDirection = new Vector3(direction.x, 0, direction.y);
-
+        cylindricalMoveDirection = move.action.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = moveDirection * moveSpeed;
+        velocity = moveDirection * moveSpeed;
+        
+
+
     }
 }
