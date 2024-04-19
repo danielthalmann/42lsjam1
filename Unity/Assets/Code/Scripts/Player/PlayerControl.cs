@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using 
+using UnityEngine.UIElements; 
 
 public class PlayerControl : MonoBehaviour
 {
 
     public Rigidbody rb;
 
-    public float moveSpeed = 1f;
+    public MapController map;
 
-    public InputActionReference move;
+    public float moveSpeed = 0.01f;
 
-    private Vector2 cylindricalMoveDirection = new Vector2(1.0, 0.0);
+    public float turningSpeed = 0.07f;
 
-    public Vector2 cylindricalPosition = Vector2.zero;
+    public InputActionReference move;   
+
+    private Vector2 cylindricalMoveDirection = new Vector2(1.0f, 1.0f).normalized;
+
+    private Vector2 cylindricalPosition = Vector2.zero;
 
 
 
@@ -30,12 +32,27 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cylindricalMoveDirection = move.action.ReadValue<Vector2>();
+        // We are only interested in the X value of the vector: left or right
+        // A negative value indicate to turn left
+        // A positive value indicate to turn right
+        Vector2 playerMovement = move.action.ReadValue<Vector2>();
+        float turningSpeed = 0.07f;
+        float turnAngleRad = - turningSpeed * playerMovement.x;
+        cylindricalMoveDirection = new Vector2(
+        cylindricalMoveDirection.x * Mathf.Cos(turnAngleRad) - cylindricalMoveDirection.y * Mathf.Sin(turnAngleRad),
+        cylindricalMoveDirection.x * Mathf.Sin(turnAngleRad) + cylindricalMoveDirection.y * Mathf.Cos(turnAngleRad)
+        ).normalized;            
     }
 
     private void FixedUpdate()
     {
-        velocity = moveDirection * moveSpeed;
+        
+        Vector2 velocity = cylindricalMoveDirection * moveSpeed;
+        cylindricalPosition += velocity;
+
+        Vector3 newPosition = map.To3dVector(cylindricalPosition);
+
+        transform.position = newPosition;
         
 
 
