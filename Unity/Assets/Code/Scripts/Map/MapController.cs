@@ -10,9 +10,11 @@ public class MapController : MonoBehaviour
     public float mapRadius = 1.0f;
     public float mapHeight = 1.0f;
 
-
     public Vector2 mapStartPoint = Vector2.zero;
 
+    void Awake() {
+        this.transform.localScale = new Vector3(mapRadius, mapHeight, mapRadius);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +44,7 @@ public class MapController : MonoBehaviour
         {   
             Vector3 radius = (new Vector3(Mathf.Cos(angle * i), 0, Mathf.Sin(angle * i))) * mapRadius;
 
-            startPosition = (transform.rotation * ((transform.position + radius) - transform.position)) + transform.position;
+            startPosition = (transform.rotation * ((transform.position + radius) - new Vector3(0, mapHeight, 0) - transform.position)) + transform.position;
             endPosition = (transform.rotation * (transform.position + radius + new Vector3(0, mapHeight, 0) - transform.position)) + transform.position;
 
             Gizmos.DrawLine(startPosition, endPosition);
