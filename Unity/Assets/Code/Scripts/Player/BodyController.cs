@@ -11,16 +11,18 @@ public class BodyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Obtient la liste de positions de la tête
-        Queue<Vector3> positionList = headControl.GetPositionList();
+        // Obtient la liste de positions et de rotations de la tête
+        Queue<PositionRotation> positionAndRotationList = headControl.GetPositionAndRotationList();
 
-        // Vérifie si la liste de positions et le corps sont disponibles
-        if (positionList != null && positionList.Count > queueIndex)
+        // Vérifie si la liste de positions et de rotations et le corps sont disponibles
+        if (positionAndRotationList != null && positionAndRotationList.Count > queueIndex)
         {
-            // Obtient la position correspondante de la liste de positions
-            Vector3 bodyPosition = positionList.ToArray()[positionList.Count - queueIndex];
-            // Ajuste la position du corps
-            transform.position = bodyPosition;
+            // Obtient la position et la rotation correspondante de la liste
+            PositionRotation positionRotation = positionAndRotationList.ToArray()[positionAndRotationList.Count - queueIndex];
+            // Ajuste la position et la rotation du corps
+            transform.position = positionRotation.position;
+            transform.rotation = positionRotation.rotation;
         }
     }
+
 }

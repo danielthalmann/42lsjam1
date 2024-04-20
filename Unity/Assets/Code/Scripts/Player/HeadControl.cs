@@ -3,21 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+// Structure personnalisée pour stocker à la fois un Vector3 et un Quaternion
+public struct PositionRotation
+{
+    public Vector3 position;
+    public Quaternion rotation;
+
+    // Constructeur pour initialiser la structure avec une position et une rotation
+    public PositionRotation(Vector3 pos, Quaternion rot)
+    {
+        position = pos;
+        rotation = rot;
+    }
+}
+
 public class HeadControl : MonoBehaviour
 {
 
-    public Rigidbody rb;
-    public float moveSpeed = 10f;
+    //public Rigidbody rb;
+    //public float moveSpeed = 10f;
     public InputActionReference move;
 
     private Vector3 moveDirection = Vector3.zero;
 
-    private Queue<Vector3> positionList = new Queue<Vector3>();
-    private int stackLength = 50;
+    private Queue<PositionRotation> positionAndRotationList = new Queue<PositionRotation>();
+    //private int stackLength = 50;
 
     private List<GameObject> bodyList = new List<GameObject>();
     public GameObject bodyPrefab; // Référence vers le prefab de corps à instancier
-    public int bodySpacing = 2;
+    public int bodySpacing = 8;
 
     // Start is called before the first frame update
     void Start()
@@ -35,25 +50,30 @@ public class HeadControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = moveDirection * moveSpeed;
+        //rb.velocity = moveDirection * moveSpeed;
 
-        SetPositionList();
+        SetPositionAndRotationList();
     }
 
-    private void SetPositionList()
+    private void SetPositionAndRotationList()
     {
-        positionList.Enqueue(transform.position);
+        // Ajoute la position et la rotation actuelle à la Queue
+        positionAndRotationList.Enqueue(new PositionRotation(transform.position, transform.rotation));
+        Debug.Log(positionAndRotationList.Count);
 
-        if (positionList.Count > stackLength * bodyList.Count + 1)
+        // Vérifie si la Queue dépasse la longueur maximale désirée
+        if (positionAndRotationList.Count > bodySpacing * (bodyList.Count + 1))
         {
-            positionList.Dequeue();
+            // Si c'est le cas, retire le premier élément de la Queue
+            positionAndRotationList.Dequeue();
         }
     }
 
+
     //Fonction pour obtenir les positions enregistrées pendant une seconde
-    public Queue<Vector3> GetPositionList()
+    public Queue<PositionRotation> GetPositionAndRotationList()
     {
-        return positionList;
+        return positionAndRotationList;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -67,10 +87,17 @@ public class HeadControl : MonoBehaviour
             BodyController bc = newBody.GetComponent<BodyController>();
             bodyList.Add(newBody);
             bc.headControl = this;
-            bc.queueIndex = bodySpacing * (bodyList.Count + 1);
+            bc.queueIndex = bodySpacing * (bodyList.Count);
 
             GameManager.instance.Collecte(1);
 
+        }
+
+        // Collision avec un corps détectée
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            // Déclencher la condition de défaite
+            GameManager.instance.GameLoose();
         }
     }
 
