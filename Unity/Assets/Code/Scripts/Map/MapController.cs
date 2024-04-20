@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
@@ -48,20 +50,35 @@ public class MapController : MonoBehaviour
 
         Gizmos.color = Color.blue;
 
-        Gizmos.DrawSphere(To3dVector(mapStartPoint), .1f);
+        (Vector3 position, Vector3 normal) = cylindricalTo3d(mapStartPoint);
+        Gizmos.DrawSphere(position, .1f);
 
 
     }
 
 
-    public Vector3 To3dVector(Vector2 position)
+    // 1st return Vector is the XYZ position on the cylinder
+    // 2nd return Vector is the normal vector at this point.
+    public (Vector3, Vector3) cylindricalTo3d(Vector2 position)
     {
 
         float angle = (position.x / mapRadius) ;
 
         Vector3 radius = (new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))) * mapRadius;
 
-        return (transform.rotation * (transform.position + radius + new Vector3(0, position.y, 0) - transform.position)) + transform.position;
+        Vector3 position3d = (transform.rotation * (transform.position + radius + new Vector3(0, position.y, 0) - transform.position)) + transform.position;
+        
+        // FIXME: Works only when the cylinder is oriented in the x-axis direction
+        Vector3 normal_vector = position3d - transform.position;
+        normal_vector.x = 0.0f;
+
+        // Lets switch to the simple case of the cylinder oriented to the Y axis:
+        Vector3 simplePosition = Quaternion.Inverse(transform.rotation) * position3d;
+        Vector3 simpleNormale = new Vector3(simplePosition.x, 0, simplePosition.z);
+        // Switch back to rotated cylinder
+        Vector3 normalVector =  transform.rotation * simpleNormale;
+
+        return (position3d, normalVector.normalized);
 
     }
 
