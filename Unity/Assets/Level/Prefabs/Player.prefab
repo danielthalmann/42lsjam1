@@ -128,12 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301c493d7992dd44b92e5445e628d6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 4747660407698297452}
-  moveSpeed: 10
   move: {fileID: 5397884556198744411, guid: b6bd9e2b754a806419b65ac3f6d92958, type: 3}
   bodyPrefab: {fileID: 8739895976974276298, guid: a27feab90f12946f5acd2504b8e5f483,
     type: 3}
-  bodySpacing: 1
+  bodySpacing: 8
 --- !u!114 &4968801631229324836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4747660407698297452}
   map: {fileID: 0}
-  moveSpeed: 0.01
+  moveSpeed: -0.04
   turningSpeed: 0.07
   move: {fileID: 5397884556198744411, guid: b6bd9e2b754a806419b65ac3f6d92958, type: 3}
 --- !u!1001 &1224840155940366087

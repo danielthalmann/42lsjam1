@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void InitGame()
     {
+        Time.timeScale = 1.0f;
         collected = 0;
         ChangeState(GameState.init);
     }
