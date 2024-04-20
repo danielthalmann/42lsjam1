@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         this.transform.position = new Vector3(map.mapRadius, 0, map.mapRadius);
+        this.cylindricalPosition = new Vector3(0.0f, map.mapHeight / 2);
     }
 
     // Update is called once per frame
@@ -60,7 +61,7 @@ public class PlayerControl : MonoBehaviour
         
         Vector2 velocity = cylindricalMoveDirection * moveSpeed;
         Vector2 newCylPos = cylindricalPosition += velocity;
-        if (newCylPos.y < -map.mapHeight || newCylPos.y > map.mapHeight) {
+        if (newCylPos.y < 0 || newCylPos.y > map.mapHeight) {
             cylindricalMoveDirection.y = 0;
             cylindricalMoveDirection.Normalize();
             velocity = cylindricalMoveDirection * moveSpeed;
