@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     /// <param name="value"></param>
     public void Collecte(int value = 1)
     {
-        collected++;
+        collected += value;
         onCollacteChange?.Invoke(collected);
     }
 
