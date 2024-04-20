@@ -69,6 +69,8 @@ public class HeadControl : MonoBehaviour
             bc.headControl = this;
             bc.queueIndex = bodySpacing * (bodyList.Count + 1);
 
+            GameManager.instance.Collecte(1);
+
         }
     }
 

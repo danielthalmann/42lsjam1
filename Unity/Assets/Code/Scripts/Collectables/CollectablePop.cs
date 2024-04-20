@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static GameManager;
 
 public class EnemyPop : MonoBehaviour
 {
@@ -19,13 +20,28 @@ public class EnemyPop : MonoBehaviour
             map = FindAnyObjectByType<MapController>();
 
         }
+        GameManager.instance.onStateChange += OnStateChange;
+        GameManager.instance.onCollacteChange += OnCollacteChange;
+
     }
 
+    void OnStateChange(GameState state)
+    {
+        if (state == GameState.init)
+        {
+            SpawnCollectable();
+        }
+    }
+
+    void OnCollacteChange(int value)
+    {
+        SpawnCollectable();
+    }
 
     /// <summary>
     /// Crée un bug aléatoirement
     /// </summary>
-    public void PopBug()
+    public void SpawnCollectable()
     {
 
         float maxWidth = 2 * Mathf.PI * map.mapRadius;

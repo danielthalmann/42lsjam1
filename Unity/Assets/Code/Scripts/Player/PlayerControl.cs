@@ -32,6 +32,11 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(map == null)
+        {
+            map = FindAnyObjectByType<MapController>();
+        }
+
         this.transform.position = new Vector3(map.mapRadius, 0, map.mapRadius);
     }
 

@@ -609,7 +609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1290,6 +1290,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5247579443990863992, guid: e4d35b86fe582b24f82a7adbc974e9fa,
+        type: 3}
+      propertyPath: bugPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247579443990863992, guid: e4d35b86fe582b24f82a7adbc974e9fa,
+        type: 3}
+      propertyPath: bugPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8901037290641590845, guid: c1dbbddb7f7c6a547a817d439b58aa8e,
+        type: 3}
+    - target: {fileID: 5247579443990863992, guid: e4d35b86fe582b24f82a7adbc974e9fa,
+        type: 3}
+      propertyPath: bugPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5982356425978089822, guid: 226f5b1a79f056a489f0b34917c0e2f1,
+        type: 3}
+    - target: {fileID: 5247579443990863992, guid: e4d35b86fe582b24f82a7adbc974e9fa,
+        type: 3}
+      propertyPath: bugPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2251259985004002825, guid: d21a4a4088dfba94eac10604ef3ce49d,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
