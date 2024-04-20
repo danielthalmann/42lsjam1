@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyPop : MonoBehaviour
@@ -11,6 +12,15 @@ public class EnemyPop : MonoBehaviour
 
     private int bugIndex = 0;
 
+    private void Start()
+    {
+        if (map == null)
+        {
+            map = FindAnyObjectByType<MapController>();
+
+        }
+    }
+
 
     /// <summary>
     /// Crée un bug aléatoirement
@@ -21,9 +31,19 @@ public class EnemyPop : MonoBehaviour
         float maxWidth = 2 * Mathf.PI * map.mapRadius;
         float maxHeight = map.mapHeight;
 
+
         Vector2 newPos = new Vector2 (Random.Range(0, maxWidth), Random.Range(0.1f, maxHeight - 0.1f));
 
-        // Instantiate(bugs[bugIndex], map.To3dVector(newPos), map.ToQuaternion(newPos));
+        (Vector3 newPosition, Vector3 normal) = map.cylindricalTo3d(newPos);
+        Vector3 lookForwardTmp = (newPosition - transform.position).normalized;
+
+        Vector3 lookUp = normal;
+        Vector3 lookRight = Vector3.Cross(normal, lookForwardTmp).normalized;
+        Vector3 lookForward = Vector3.Cross(lookRight, normal).normalized;
+                
+        Instantiate(bugs[bugIndex], newPosition, Quaternion.LookRotation(lookForward, normal));
+        bugIndex++;
+        bugIndex = bugIndex % bugs.Length;
 
     }
 
