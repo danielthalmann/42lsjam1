@@ -22,6 +22,7 @@ public class DefeatController : MonoBehaviour
 
     void OnStateChange(GameState state)
     {
+        Debug.Log(state);
         if (state == GameState.loose)
         {
             Defeat();
@@ -31,11 +32,7 @@ public class DefeatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!panelGame.activeSelf)
-        {
-            panelGame.SetActive(true);
-            Time.timeScale = 0.0f;
-        };
+
     }
 
     public void Defeat()

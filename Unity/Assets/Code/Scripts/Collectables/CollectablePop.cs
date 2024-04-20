@@ -30,12 +30,15 @@ public class EnemyPop : MonoBehaviour
         if (state == GameState.init)
         {
             SpawnCollectable();
+            SpawnCollectable(); 
+            SpawnCollectable();
         }
     }
 
     void OnCollacteChange(int value)
     {
         SpawnCollectable();
+
     }
 
     /// <summary>
