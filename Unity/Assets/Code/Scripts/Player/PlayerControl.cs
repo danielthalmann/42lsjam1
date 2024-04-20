@@ -32,7 +32,7 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        this.transform.position = new Vector3(map.mapRadius, 0, map.mapRadius);
     }
 
     // Update is called once per frame
@@ -54,6 +54,12 @@ public class PlayerControl : MonoBehaviour
     {
         
         Vector2 velocity = cylindricalMoveDirection * moveSpeed;
+        Vector2 newCylPos = cylindricalPosition += velocity;
+        if (newCylPos.y < -map.mapHeight || newCylPos.y > map.mapHeight) {
+            cylindricalMoveDirection.y = 0;
+            cylindricalMoveDirection.Normalize();
+            velocity = cylindricalMoveDirection * moveSpeed;
+        }
         cylindricalPosition += velocity;
 
         (Vector3 newPosition, Vector3 normal) = map.cylindricalTo3d(cylindricalPosition);
