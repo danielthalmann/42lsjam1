@@ -17,7 +17,7 @@ public class HeadControl : MonoBehaviour
 
     private List<GameObject> bodyList = new List<GameObject>();
     public GameObject bodyPrefab; // Référence vers le prefab de corps à instancier
-    public float bodySpacing = 10f;
+    public int bodySpacing = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -38,16 +38,13 @@ public class HeadControl : MonoBehaviour
         rb.velocity = moveDirection * moveSpeed;
 
         SetPositionList();
-        //Debug.Log(positionList.ToArray()[0]);
-        //Debug.Log("Positions in second: ");
-        //Debug.Log(positionList.Count);
     }
 
     private void SetPositionList()
     {
         positionList.Enqueue(transform.position);
 
-        if (positionList.Count > stackLength * bodyList.Count)
+        if (positionList.Count > stackLength * bodyList.Count + 1)
         {
             positionList.Dequeue();
         }
@@ -70,7 +67,7 @@ public class HeadControl : MonoBehaviour
             BodyController bc = newBody.GetComponent<BodyController>();
             bodyList.Add(newBody);
             bc.headControl = this;
-            bc.queueIndex = bodyList.Count + 1;
+            bc.queueIndex = bodySpacing * (bodyList.Count + 1);
 
         }
     }
@@ -87,11 +84,11 @@ public class HeadControl : MonoBehaviour
             Vector3 newBodyPosition = lastBodyPosition - transform.forward * bodySpacing;
 
             return newBodyPosition;
-        }
+    }
         else
         {
             // Si aucun corps n'existe encore dans la chaîne, place le nouveau Body directement derrière la tête
             return transform.position - transform.forward * bodySpacing;
-        }
+}
     }
 }

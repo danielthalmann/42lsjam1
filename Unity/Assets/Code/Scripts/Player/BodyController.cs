@@ -6,7 +6,8 @@ public class BodyController : MonoBehaviour
 {
     public HeadControl headControl; // Référence à la tête pour obtenir la liste de positions et le nombre de corps
 
-    public int queueIndex = 1;
+    public int queueIndex;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -17,7 +18,7 @@ public class BodyController : MonoBehaviour
         if (positionList != null && positionList.Count > queueIndex)
         {
             // Obtient la position correspondante de la liste de positions
-            Vector3 bodyPosition = positionList.ToArray()[queueIndex];
+            Vector3 bodyPosition = positionList.ToArray()[positionList.Count - queueIndex];
             // Ajuste la position du corps
             transform.position = bodyPosition;
         }
