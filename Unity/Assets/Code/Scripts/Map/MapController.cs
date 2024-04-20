@@ -57,23 +57,23 @@ public class MapController : MonoBehaviour
     }
 
 
+    // cylPosition represents the UV coordinates on the "flattened" cylinder.
+    //
     // 1st return Vector is the XYZ position on the cylinder
     // 2nd return Vector is the normal vector at this point.
-    public (Vector3, Vector3) cylindricalTo3d(Vector2 position)
+    public (Vector3, Vector3) cylindricalTo3d(Vector2 flattenCylPosition)
     {
+        float phi = (flattenCylPosition.x / mapRadius) ;
+        float rho = this.mapRadius;
+        float z = flattenCylPosition.y;
 
-        float angle = (position.x / mapRadius) ;
+        Vector3 position3d = new Vector3(rho*Mathf.Cos(phi), z, rho * Mathf.Sin(phi));
+        position3d = transform.rotation * position3d;
+        position3d += transform.position;
 
-        Vector3 radius = (new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))) * mapRadius;
-
-        Vector3 position3d = (transform.rotation * (transform.position + radius + new Vector3(0, position.y, 0) - transform.position)) + transform.position;
-        
-        // FIXME: Works only when the cylinder is oriented in the x-axis direction
-        Vector3 normal_vector = position3d - transform.position;
-        normal_vector.x = 0.0f;
-
-        // Lets switch to the simple case of the cylinder oriented to the Y axis:
-        Vector3 simplePosition = Quaternion.Inverse(transform.rotation) * position3d;
+        // Lets switch to the simple case of the cylinder, centered and oriented to the Y axis:
+        Quaternion rot_inv = Quaternion.Inverse(transform.rotation);
+        Vector3 simplePosition = rot_inv * (position3d - transform.position);
         Vector3 simpleNormale = new Vector3(simplePosition.x, 0, simplePosition.z);
         // Switch back to rotated cylinder
         Vector3 normalVector =  transform.rotation * simpleNormale;
