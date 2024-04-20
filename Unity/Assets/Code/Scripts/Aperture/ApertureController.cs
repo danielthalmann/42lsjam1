@@ -8,6 +8,7 @@ public class ApertureController : MonoBehaviour
     public Animator animatorFadeIn;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class ApertureController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+                
     }
 
     void OnStateChange(GameState state)

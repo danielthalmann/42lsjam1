@@ -6,7 +6,7 @@
             "id": "ef6bf283-7792-42f7-b9f4-5790dbf2204b",
             "actions": [
                 {
-                    "name": "Fire",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "8a12170a-cc61-49d0-8387-696635cf2bd7",
                     "expectedControlType": "Button",
@@ -28,11 +28,11 @@
                 {
                     "name": "",
                     "id": "ec015ee1-23bb-4a5b-92b9-92af61898195",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Fire",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
