@@ -53,7 +53,7 @@ public class HeadControl : MonoBehaviour
     {
         // Ajoute la position et la rotation actuelle à la Queue
         positionAndRotationList.Enqueue(new PositionRotation(transform.position, transform.rotation));
-        Debug.Log(positionAndRotationList.Count);
+       // Debug.Log(positionAndRotationList.Count);
 
         // Vérifie si la Queue dépasse la longueur maximale désirée
         if (positionAndRotationList.Count > bodySpacing * (bodyList.Count + 1))
@@ -76,12 +76,12 @@ public class HeadControl : MonoBehaviour
         {
             Destroy(collider.gameObject); // Détruit l'objet "coins"
       
-            GameObject newBody = Instantiate(bodyPrefab, CalculateNewBodyPosition(), transform.rotation);
+            GameObject newBody = Instantiate(bodyPrefab, new Vector3(0, 0, 0), transform.rotation);
 
             BodyController bc = newBody.GetComponent<BodyController>();
             bodyList.Add(newBody);
             bc.headControl = this;
-            bc.queueIndex = bodySpacing * (bodyList.Count);
+            bc.queueIndex = bodySpacing * bodyList.Count + 3;
 
             GameManager.instance.Collecte(1);
 
@@ -93,25 +93,5 @@ public class HeadControl : MonoBehaviour
             // Déclencher la condition de défaite
             GameManager.instance.GameLoose();
         }
-    }
-
-    private Vector3 CalculateNewBodyPosition()
-    {
-        // Vérifie si des corps existent déjà dans la chaîne
-        if (bodyList.Count > 0)
-        {
-            // Récupère la position du dernier Body dans la chaîne
-            Vector3 lastBodyPosition = bodyList[bodyList.Count - 1].transform.position;
-
-            // Calcule une nouvelle position derrière le dernier Body dans la direction opposée à celle du mouvement du Head
-            Vector3 newBodyPosition = lastBodyPosition - transform.forward * bodySpacing;
-
-            return newBodyPosition;
-    }
-        else
-        {
-            // Si aucun corps n'existe encore dans la chaîne, place le nouveau Body directement derrière la tête
-            return transform.position - transform.forward * bodySpacing;
-}
     }
 }
