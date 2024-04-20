@@ -20,15 +20,11 @@ public struct PositionRotation
 
 public class HeadControl : MonoBehaviour
 {
-
-    //public Rigidbody rb;
-    //public float moveSpeed = 10f;
     public InputActionReference move;
 
     private Vector3 moveDirection = Vector3.zero;
 
     private Queue<PositionRotation> positionAndRotationList = new Queue<PositionRotation>();
-    //private int stackLength = 50;
 
     private List<GameObject> bodyList = new List<GameObject>();
     public GameObject bodyPrefab; // Référence vers le prefab de corps à instancier
@@ -50,8 +46,6 @@ public class HeadControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rb.velocity = moveDirection * moveSpeed;
-
         SetPositionAndRotationList();
     }
 
