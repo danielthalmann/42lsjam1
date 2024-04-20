@@ -16,10 +16,13 @@ public class GameManager : MonoBehaviour
 
     public int collected = 0;
 
+    private bool firstRun = false;
+
     public enum GameState
     {
         init,
         start,
+        pause,
         win,
         loose
     }
@@ -35,13 +38,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitGame();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-                
+        if (!firstRun)
+        {
+            InitGame();
+            firstRun = true;
+        }
+
     }
 
     /// <summary>
