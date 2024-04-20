@@ -7,7 +7,7 @@ public class EnemyPop : MonoBehaviour
 {
 
     public MapController map;
-    public GameObject[] bugs;
+    public GameObject[] bugPrefabs;
     
 
     private int bugIndex = 0;
@@ -41,9 +41,9 @@ public class EnemyPop : MonoBehaviour
         Vector3 lookRight = Vector3.Cross(normal, lookForwardTmp).normalized;
         Vector3 lookForward = Vector3.Cross(lookRight, normal).normalized;
                 
-        Instantiate(bugs[bugIndex], newPosition, Quaternion.LookRotation(lookForward, normal));
+        Instantiate(bugPrefabs[bugIndex], newPosition, Quaternion.LookRotation(lookForward, normal));
         bugIndex++;
-        bugIndex = bugIndex % bugs.Length;
+        bugIndex = bugIndex % bugPrefabs.Length;
 
     }
 
