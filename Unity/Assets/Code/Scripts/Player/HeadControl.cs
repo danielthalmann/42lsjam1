@@ -26,14 +26,14 @@ public class HeadControl : MonoBehaviour
 
     private Queue<PositionRotation> positionAndRotationList = new Queue<PositionRotation>();
 
-    private List<GameObject> bodyList = new List<GameObject>();
+    private List<GameObject> bodyList;
     public GameObject bodyPrefab; // Référence vers le prefab de corps à instancier
     public int bodySpacing = 8;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        bodyList = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -78,6 +78,15 @@ public class HeadControl : MonoBehaviour
       
             GameObject newBody = Instantiate(bodyPrefab, new Vector3(0, 0, 0), transform.rotation);
 
+            if(bodyList.Count < 3)
+            {
+                // Désactiver le collider du premier corps
+                Collider col = newBody.GetComponent<Collider>();
+                if (col != null)
+                {
+                    col.enabled = false;
+                }
+            }
             BodyController bc = newBody.GetComponent<BodyController>();
             bodyList.Add(newBody);
             bc.headControl = this;

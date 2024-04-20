@@ -93,11 +93,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameLoose()
     {
+        Debug.Log("coucou");
         ChangeState(GameState.loose);
     }
 
     /// <summary>
-    /// indique le nombre d'élément collecté
+    /// indique le nombre d'ï¿½lï¿½ment collectï¿½
     /// </summary>
     /// <param name="value"></param>
     public void Collecte(int value = 1)

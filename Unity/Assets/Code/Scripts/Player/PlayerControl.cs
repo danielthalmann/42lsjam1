@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
 
     public float moveSpeed = 0.01f;
 
-    public float turningSpeed = 0.07f;
+    public float turningSpeed = 0.03f;
 
     public InputActionReference move;   
 
@@ -48,7 +48,6 @@ public class PlayerControl : MonoBehaviour
         // A negative value indicate to turn left
         // A positive value indicate to turn right
         Vector2 playerMovement = move.action.ReadValue<Vector2>();
-        float turningSpeed = 0.07f;
         float turnAngleRad = - turningSpeed * playerMovement.x;
         cylindricalMoveDirection = new Vector2(
         cylindricalMoveDirection.x * Mathf.Cos(turnAngleRad) - cylindricalMoveDirection.y * Mathf.Sin(turnAngleRad),
