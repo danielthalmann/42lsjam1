@@ -74,6 +74,10 @@ public class HeadControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Collectable")) // Vérifie si l'objet collisionné est bien "coins"
         {
+            Collectable collectable = collider.gameObject.GetComponent<Collectable>();
+            if (collectable != null) {
+                GameManager.instance.Collecte(collectable.scoreValue);
+            }
             Destroy(collider.gameObject); // Détruit l'objet "coins"
       
             GameObject newBody = Instantiate(bodyPrefab, new Vector3(0, 0, 0), transform.rotation);
@@ -92,7 +96,6 @@ public class HeadControl : MonoBehaviour
             bc.headControl = this;
             bc.queueIndex = bodySpacing * bodyList.Count + 3;
 
-            GameManager.instance.Collecte(1);
 
         }
 
