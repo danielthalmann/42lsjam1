@@ -37,7 +37,8 @@ public class PlayerControl : MonoBehaviour
             map = FindAnyObjectByType<MapController>();
         }
 
-        this.transform.position = new Vector3(map.mapRadius, 0, map.mapRadius);
+        float radius = (map.mapRadiusTop + map.mapRadiusBottom) / 2;
+        this.transform.position = new Vector3(radius, 0, radius);
         this.cylindricalPosition = new Vector3(0.0f, map.mapHeight / 2);
     }
 

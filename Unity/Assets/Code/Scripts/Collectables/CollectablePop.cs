@@ -42,12 +42,13 @@ public class EnemyPop : MonoBehaviour
     }
 
     /// <summary>
-    /// Crée un bug aléatoirement
+    /// Crï¿½e un bug alï¿½atoirement
     /// </summary>
     public void SpawnCollectable()
     {
 
-        float maxWidth = 2 * Mathf.PI * map.mapRadius;
+        // FIXME: Use mapRadiusBottom and mapRadiusTop
+        float maxWidth = 2 * Mathf.PI * map.mapRadiusBottom;
         float maxHeight = map.mapHeight;
 
 
