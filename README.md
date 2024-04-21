@@ -2,7 +2,7 @@
 
 Marathon de création de jeux vidéo de 48h non-stop à l'école 42 Lausanne.
 
-La Game Jam s'est déroulé du 19 au 21 avril 2024
+La Game Jam s'est déroulée du 19 au 21 avril 2024
 
 <a href="https://42lsjam.ch/">https://42lsjam.ch/</a>
 
@@ -10,16 +10,16 @@ La Game Jam s'est déroulé du 19 au 21 avril 2024
 
 La version qui a été remis à la game jam se trouve sur itch.io à l'adresse suivante :
 
-[<img height="40px" src="https://static.itch.io/images/badge.svg">](https://aliend.itch.io/42lsjam)
+[<img height="40px" src="https://static.itch.io/images/badge.svg">](https://aliend.itch.io/thebuffettree)
 
 
 ## L'équipe
 
-### Benoît
+### Benoît Bes
 
 - [https://github.com/pugxart](https://github.com/pugxart)
 
-### Alexandre
+### Alexandre Luisier
 
 - [https://github.com/AlexandreLuisier](https://github.com/AlexandreLuisier)
 
@@ -40,4 +40,4 @@ La version qui a été remis à la game jam se trouve sur itch.io à l'adresse s
 
 ## Le thème
 
-Le thème n'est pas encore connu
+Le thème de la game jam était : croissance
