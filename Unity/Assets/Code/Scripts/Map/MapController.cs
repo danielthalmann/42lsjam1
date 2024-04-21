@@ -6,9 +6,7 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
 
-    public float mapRadiusBottom = 1.0f;
-
-    public float mapRadiusTop = 1.0f;
+    public float mapRadius = 1.0f;
     public float mapHeight = 1.0f;
 
 
@@ -41,11 +39,10 @@ public class MapController : MonoBehaviour
 
         for (int i = 0; i < segment; i++)
         {   
-            Vector3 radiusTop = (new Vector3(Mathf.Cos(angle * i), 0, Mathf.Sin(angle * i))) * mapRadiusTop;
-            Vector3 radiusBottom = (new Vector3(Mathf.Cos(angle * i), 0, Mathf.Sin(angle * i))) * mapRadiusBottom;
+            Vector3 radius = (new Vector3(Mathf.Cos(angle * i), 0, Mathf.Sin(angle * i))) * mapRadius;
 
-            startPosition = (transform.rotation * ((transform.position + radiusBottom) - transform.position)) + transform.position;
-            endPosition = (transform.rotation * (transform.position + radiusTop + new Vector3(0, mapHeight, 0) - transform.position)) + transform.position;
+            startPosition = (transform.rotation * ((transform.position + radius) - transform.position)) + transform.position;
+            endPosition = (transform.rotation * (transform.position + radius + new Vector3(0, mapHeight, 0) - transform.position)) + transform.position;
 
             Gizmos.DrawLine(startPosition, endPosition);
         }
@@ -65,11 +62,9 @@ public class MapController : MonoBehaviour
     // 2nd return Vector is the normal vector at this point.
     public (Vector3, Vector3) cylindricalTo3d(Vector2 flattenCylPosition)
     {
+        float phi = (flattenCylPosition.x / mapRadius) ;
+        float rho = this.mapRadius;
         float z = flattenCylPosition.y;
-        float rho = mapRadiusBottom + z / mapHeight * mapRadiusTop / mapRadiusBottom;
-        
-        float phi = (flattenCylPosition.x / rho) ;
-        
 
         Vector3 position3d = new Vector3(rho*Mathf.Cos(phi), z, rho * Mathf.Sin(phi));
         position3d = transform.rotation * position3d;
