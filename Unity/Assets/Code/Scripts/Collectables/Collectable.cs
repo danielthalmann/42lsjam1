@@ -14,6 +14,8 @@ public class Collectable : MonoBehaviour
     public InsectType type;
 
     public int scoreValue;
+
+    public int bodyValue;
     // Start is called before the first frame update
     void Start()
     {

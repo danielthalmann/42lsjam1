@@ -250,3 +250,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   scoreValue: 45
+  bodyValue: 3

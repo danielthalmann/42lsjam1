@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   scoreValue: 30
+  bodyValue: 2
 --- !u!4 &6363104505390910436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ceb115101a75c04aaa6cac808482da6,

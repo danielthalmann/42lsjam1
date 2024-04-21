@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -75,26 +74,30 @@ public class HeadControl : MonoBehaviour
         if (collider.gameObject.CompareTag("Collectable")) // Vérifie si l'objet collisionné est bien "coins"
         {
             Collectable collectable = collider.gameObject.GetComponent<Collectable>();
+            int n_body = 1;
             if (collectable != null) {
                 GameManager.instance.Collecte(collectable.scoreValue);
+                n_body = collectable.bodyValue;
             }
             Destroy(collider.gameObject); // Détruit l'objet "coins"
       
-            GameObject newBody = Instantiate(bodyPrefab, new Vector3(0, 0, 0), transform.rotation);
-
-            if(bodyList.Count < 3)
-            {
-                // Désactiver le collider du premier corps
-                Collider col = newBody.GetComponent<Collider>();
-                if (col != null)
+            for (int i = 0; i < n_body; i++) {
+                GameObject newBody = Instantiate(bodyPrefab, new Vector3(0, 0, 0), transform.rotation);
+        
+                if(bodyList.Count < 3)
                 {
-                    col.enabled = false;
+                    // Désactiver le collider du premier corps
+                    Collider col = newBody.GetComponent<Collider>();
+                    if (col != null)
+                    {
+                        col.enabled = false;
+                    }
                 }
+                BodyController bc = newBody.GetComponent<BodyController>();
+                bodyList.Add(newBody);
+                bc.headControl = this;
+                bc.queueIndex = bodySpacing * bodyList.Count + 3;
             }
-            BodyController bc = newBody.GetComponent<BodyController>();
-            bodyList.Add(newBody);
-            bc.headControl = this;
-            bc.queueIndex = bodySpacing * bodyList.Count + 3;
 
 
         }
