@@ -17,10 +17,12 @@ La version qui a été remis à la game jam se trouve sur itch.io à l'adresse s
 
 ### Benoît Bes
 
+- [https://itch.io/profile/pugxart](https://itch.io/profile/pugxart)
 - [https://github.com/pugxart](https://github.com/pugxart)
 
 ### Alexandre Luisier
 
+- [https://itch.io/profile/alexandreluisier](https://itch.io/profile/alexandreluisier)
 - [https://github.com/AlexandreLuisier](https://github.com/AlexandreLuisier)
 
 ### Daniel Thalmann
@@ -30,10 +32,12 @@ La version qui a été remis à la game jam se trouve sur itch.io à l'adresse s
 
 ### Tanguy Rossel
 
+- [https://itch.io/profile/peckemys](https://itch.io/profile/peckemys)
 - [https://github.com/tyrossel](https://github.com/tyrossel)
 
 ### Gaël Rubin
 
+- [https://itch.io/profile/goon42](https://itch.io/profile/goon42)
 - [https://github.com/Grubin42](https://github.com/Grubin42)
 
 
